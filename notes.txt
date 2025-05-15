@@ -1,0 +1,5 @@
+config checking at start of program
+why can't we make the config something that can be accessed by everyone
+    how can config be made central...research 
+
+module import....from checkers import FunctionChecker instead of from checkers.function_checker import FunctionChecker

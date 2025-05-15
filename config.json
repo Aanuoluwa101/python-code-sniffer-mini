@@ -1,5 +1,5 @@
 {
         "max_function_length": 40,
-        "max_function_args_length": 4,
+        "max_function_args_count": 4,
         "check_docstring": true
 }

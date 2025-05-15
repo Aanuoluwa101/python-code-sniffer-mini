@@ -1,4 +1,4 @@
-from checkers.function_length_checker import FunctionLengthChecker
+from checkers.function_checker import FunctionChecker
 
 class CodeSniffer:
     # the file we're sniffing
@@ -8,5 +8,5 @@ class CodeSniffer:
 
     def __init__(self):
         self.checkers = [
-            FunctionLengthChecker()
+            FunctionChecker()
         ]

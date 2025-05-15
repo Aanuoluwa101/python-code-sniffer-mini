@@ -20,6 +20,7 @@ class  Checker(ABC, ast.NodeVisitor):
             
         self.violations = []
 
+    # this run method is bad
     @abstractmethod
     def run(self, source_code) -> List[Violation]:
         pass

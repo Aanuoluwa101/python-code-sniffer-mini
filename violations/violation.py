@@ -1,11 +1,13 @@
 from abc import ABC, abstractmethod
+import ast
 
 
 class Violation(ABC):
-    def __init__(self, node_name: str, *args, **kwargs):
-        if not node_name or not isinstance(node_name, str) or len(node_name.strip()) == 0:
-            raise ValueError("node_name must be a non-empty string")
-        self.node_name = node_name
+    # perhaps load the config here
+    def __init__(self, node: ast.AST , *args, **kwargs):
+        if not node or not isinstance(node, ast.AST):
+            raise ValueError("node must be an instance of ast.AST")
+        self.node = node
         
     @abstractmethod
     def show(self) -> str:

@@ -5,8 +5,8 @@ from violations.args_count_violation import ArgsCountViolation
 from violations.no_docstring_violation import NoDocstringViolation
 
 class FunctionChecker(Checker):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, tree, config):
+        super().__init__(tree, config)
 
     def check_length(self, node):
         start_line = node.lineno
@@ -36,12 +36,7 @@ class FunctionChecker(Checker):
     def visit_FunctionDef(self, node):
         self.check_length(node)
         self.check_arguments_count()
-        self.check_docstring
+        if self.config.get("enforce_docstring"):
+            self.check_docstring
+
         self.generic_visit(node) 
-
-    def run(self, source_code):
-        tree = ast.parse(source_code)
-        checker = FunctionChecker()
-        checker.visit(tree)
-
-        return checker.violations

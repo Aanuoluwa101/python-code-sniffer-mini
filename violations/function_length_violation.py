@@ -1,4 +1,4 @@
-from violation import Violation
+from .violation import Violation
 
 
 class FunctionLengthViolation(Violation):
@@ -8,4 +8,4 @@ class FunctionLengthViolation(Violation):
         self.max_function_len = kwargs.get("max_function_len")
 
     def show(self):
-        return f"'{self.node.name}' at line {self.node.lineno} is longer than {self.max_function_len}: {self.length}"
+        return f"'{self.node.name}' at line {self.node.lineno} has more than {self.max_function_len} lines: {self.length}"

@@ -1,22 +1,23 @@
-from checkers.function_checker import FunctionChecker
-from checkers.class_checker import ClassChecker
+from checkers import FunctionChecker, ClassChecker
 
 
-checks = [
-        {
-            "name": "Function Check",
+checks = {
+         "Function Check": {
             "description": "Checks the length and number of arguments passed to functions",
             "checker": FunctionChecker,
             "config": {
-                "max_function_length": 40,
-                "max_function_args_count": 4,
+                "max_function_length": 4,
+                "max_function_args_count": 2,
                 "ensure_docstring": True
             }
         },
-        {
-            "name": "Class Check",
+          "Class Check":{
             "description": "Checks that a class has docstring",
             "checker": ClassChecker,
             "config": {}
-        },
-    ]
+        }
+    }
+    
+
+if __name__ == "__main__":
+    print(type(FunctionChecker))

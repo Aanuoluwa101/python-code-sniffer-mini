@@ -1,8 +1,7 @@
-from checker import Checker
+from .checker import Checker
 import ast
-from violations.function_length_violation import FunctionLengthViolation
-from violations.args_count_violation import ArgsCountViolation
-from violations.no_docstring_violation import NoDocstringViolation
+from violations import FunctionLengthViolation, ArgsCountViolation, NoDocstringViolation
+
 
 class FunctionChecker(Checker):
     def __init__(self, tree, config):
@@ -14,8 +13,9 @@ class FunctionChecker(Checker):
         length = end_line - start_line + 1
         max_function_len = self.config.get("max_function_length")
 
+
         if length > max_function_len:            
-            violation = FunctionLengthViolation(node.name, length=length, start_line=start_line, max_function_len=max_function_len)
+            violation = FunctionLengthViolation(node, length=length, start_line=start_line, max_function_len=max_function_len)
             self.violations.append(violation)
 
 
@@ -35,8 +35,11 @@ class FunctionChecker(Checker):
 
     def visit_FunctionDef(self, node):
         self.check_length(node)
-        self.check_arguments_count()
-        if self.config.get("enforce_docstring"):
-            self.check_docstring
+        self.check_arguments_count(node)
+        if self.config.get("ensure_docstring"):
+            self.check_docstring(node)
 
         self.generic_visit(node) 
+
+    
+

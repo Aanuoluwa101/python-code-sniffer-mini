@@ -1,6 +1,6 @@
-from checker import Checker
+from .checker import Checker
 import ast
-from violations.no_docstring_violation import NoDocstringViolation
+from violations import NoDocstringViolation
 
 class ClassChecker(Checker):
     def __init__(self, tree, config):
@@ -11,5 +11,5 @@ class ClassChecker(Checker):
             self.violations.append(NoDocstringViolation(node))   
 
     def visit_ClassDef(self, node):
-        self.check_docstring
+        self.check_docstring(node)
         self.generic_visit(node) 

@@ -1,4 +1,4 @@
-from violation import Violation
+from .violation import Violation
 
 
 class ArgsCountViolation(Violation):
@@ -8,4 +8,4 @@ class ArgsCountViolation(Violation):
         self.max_args_count = kwargs.get("max_args_count")  # get from central config
 
     def show(self):
-        return f"'{self.node.name}' at line {self.node.lineno} has too many arguments (max args allowed {self.max_args_count}): {self.args_count}"
+        return f"'{self.node.name}' at line {self.node.lineno} has more than {self.max_args_count} arguments: {self.args_count}"

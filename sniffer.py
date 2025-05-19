@@ -20,16 +20,16 @@ class Sniffer:
     def sniff(self):
         try:
             all_violations = []
-            for check in checks:
-                checker, config = check["checker"], checker["config"]
+            for check in checks.values():
+                checker, config = check["checker"], check["config"]
                 checker = checker(self.tree, config)
                 violations = checker.run()
                 all_violations.extend(violations)
             
-            if not violations:
-                print("All looks good!")
+            if not all_violations:
+                print("\033[92mAll looks good!\033[0m")
             else: 
-                print(f"{len(all_violations)} violations!")
+                print(f"\033[91m{len(all_violations)} violation(s)\033[0m")
                 for violation in all_violations:
                     print(violation)
         except Exception as e:

@@ -1,4 +1,4 @@
-from violation import Violation
+from .violation import Violation
 
 
 class NoDocstringViolation(Violation):

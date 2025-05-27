@@ -1,6 +1,7 @@
 
 from config import checks
 import ast 
+from violations import Violation
 
 
 class Sniffer:     
@@ -24,6 +25,8 @@ class Sniffer:
                 checker, config = check["checker"], check["config"]
                 checker = checker(self.tree, config)
                 violations = checker.run()
+                if not all([issubclass(violation.__class__, Violation) for violation in violations]):
+                    raise ValueError("checker.run must return a list of Violations")
                 all_violations.extend(violations)
             
             if not all_violations:

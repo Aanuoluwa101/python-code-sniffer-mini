@@ -2,12 +2,11 @@ import ast
 from abc import ABC, abstractmethod
 
 
-class Checker(ABC):
-    def __init__(self, tree: ast.AST, config):
+class Checker(ABC, ast.NodeVisitor):
+    def __init__(self, tree: ast.AST, rules: dict):
         self.tree = tree
-        self.config = config
+        self.rules = rules
         self.violations = []
 
-    @abstractmethod
-    def run(self, node: ast.AST):
-        pass 
+    def run(self):
+        self.visit(self.tree)

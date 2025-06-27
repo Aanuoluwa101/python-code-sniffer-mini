@@ -1,14 +1,5 @@
-import json 
 import ast
 
-
-def load_config():
-    try:
-        with open("config.json") as f:
-            return json.load(f)
-    except Exception as e:
-        raise Exception(f"Could not fetch config: {e}")
-    
 
 def fetch_tree(filepath):
     try:

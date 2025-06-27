@@ -1,16 +1,13 @@
 import ast
-from abc import ABC
-from typing import List
-from violations.violation import Violation
+from abc import ABC, abstractmethod
 
 
-class Checker(ABC, ast.NodeVisitor):
-
-    def __init__(self, tree, config):
+class Checker(ABC):
+    def __init__(self, tree: ast.AST, config):
         self.tree = tree
         self.config = config
         self.violations = []
 
-    def run(self) -> List[Violation]:
-        self.visit(self.tree)
-        return self.violations 
+    @abstractmethod
+    def run(self, node: ast.AST):
+        pass 

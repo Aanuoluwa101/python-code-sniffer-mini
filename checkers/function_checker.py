@@ -18,7 +18,6 @@ class FunctionChecker(Checker):
             violation = FunctionLengthViolation(node, length=length, start_line=start_line, max_function_len=max_function_len)
             self.violations.append(violation)
 
-
     def check_arguments_count(self, node):
         arguments_count = len(node.args.args)
         arguments_count += 1 if node.args.vararg else 0
@@ -33,13 +32,17 @@ class FunctionChecker(Checker):
         if not ast.get_docstring(node):
             self.violations.append(NoDocstringViolation(node))   
 
-    def visit_FunctionDef(self, node):
+    # define methods that do some other checks on classes here. 
+    # methods should have only one parameter: node
+
+    def run(self, node):
         self.check_length(node)
         self.check_arguments_count(node)
-        if self.config.get("ensure_docstring"):
+        if self.config.get("ensure_function_docstring"):
             self.check_docstring(node)
 
-        self.generic_visit(node) 
+        # call the other methods you've defined here
+    
 
     
 

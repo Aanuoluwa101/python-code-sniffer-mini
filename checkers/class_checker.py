@@ -10,6 +10,9 @@ class ClassChecker(Checker):
         if not ast.get_docstring(node):
             self.violations.append(NoDocstringViolation(node))   
 
-    def visit_ClassDef(self, node):
+    # define methods that do some other checks on classes here. 
+    # methods should have only one parameter: node
+
+    def run(self, node):
         self.check_docstring(node)
-        self.generic_visit(node) 
+        # call the other methods you've defined here

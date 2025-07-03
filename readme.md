@@ -2,7 +2,9 @@
 
 A modular and extensible static analysis tool for Python code that leverages Abstract Syntax Trees (AST) to enforce coding standards and best practices.
 
----
+
+## Tools & Technologies 🧰
+- python 
 
 ## Features ✨
 
@@ -12,7 +14,6 @@ A modular and extensible static analysis tool for Python code that leverages Abs
 - **Clear violation reporting**: Detailed output with line numbers and explanations  
 - **Extensible violation system**: Create custom violation types for your specific needs  
 
----
 
 ## Installation ⚙️
 
@@ -137,4 +138,19 @@ This is done by adding it to the `registered_checkers` list found in a central  
 
 ### 3. Rules
 If your checker relies on configurable parameters (e.g., line length limits, naming conventions), add those to `rules` in `config.py`. This makes them easy to tweak later without modifying code.
+
+---
+
+## Performance Considerations ⚙️
+Currently, each registered checker operates on the entire AST and may **traverse the tree independently** when executed. This can lead to **multiple full tree traversals** — one for each checker — which can be improved on.
+
+## License 📄
+
+This project is licensed under the [MIT License](LICENSE).
+
+
+
+---
+
+
 
